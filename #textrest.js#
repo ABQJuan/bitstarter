@@ -1,0 +1,13 @@
+var sys=require('util'), 
+    rest = require("restler"); 
+
+rest.get('http://google.com').on('complete',function(result){
+    if (result instanceof Error){
+	sys.puts('Error'+result.message);
+	this.retry(4000);
+    } else {
+	sys.puts(result);
+    }
+});
+
+
